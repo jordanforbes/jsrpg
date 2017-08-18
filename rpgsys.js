@@ -1,5 +1,39 @@
 var beat=1
 
+
+
+//attacks
+
+function attack(name, startInterval, currentInterval, damage){ //attack constructor
+  this.name= name;
+  this.startInterval= startInterval;
+  this.currentInterval = currentInterval;
+  this.damage = damage;
+}
+
+moveSet=[
+  iceMag = new attack("Ice", 7, 7, 7),
+  thunderMag = new attack("Thunder", 5,5,5),
+  fireMag = new attack("FireBall",3,3,3),
+  windMag = new attack("Wind",4,4,4)
+  ]
+
+
+function move(attack){ //use move
+
+  for(i=1;i<=8;i++){
+    if(i == attack.currentInterval){
+    attack.currentInterval = attack.currentInterval + attack.startInterval
+
+    if(attack.currentInterval>8){
+        attack.currentInterval = attack.currentInterval -8
+      }
+      $("#"+i).text("-"+attack.name + " damage: "+attack.damage +", next beat: "+attack.currentInterval)
+    }
+    }
+
+}
+
 //clock setup
 function setClock(beat){ //highlights clock position
   $("#"+beat).css("background-color","red")
@@ -16,7 +50,9 @@ function measureClockSystem(){
       $(".tick").text("-") //clears measure
 
       beat=1
-      move(moveSet[0])
+
+      loadedMoves()
+
     }else{
       beat = beat+1
     }
@@ -27,85 +63,37 @@ function measureClockSystem(){
   })
 }
 
-//attacks
+// moveSet= [thunderMag,fireMag,iceMag]
+function loadedMoves(){
 
-function attack(name, startInterval, currentInterval, damage){ //attack constructor
-  this.name= name;
-  this.startInterval= startInterval;
-  this.currentInterval = currentInterval;
-  this.damage = damage;
-}
+  for(j=0;j<moveSet.length;j++){ //cycles through moveset
+    move(moveSet[j])
 
-var iceMag = new attack("Ice", 7, 7, 7)
-var thunderMag = new attack("Thunder", 5,5,5)
-var fireMag = new attack("FireBall",3,3,3)
-
-function move(attack){ //use move
-
-  for(i=1;i<=8;i++){
-    if(i == attack.currentInterval){
-    attack.currentInterval = attack.currentInterval + attack.startInterval
-
-    if(attack.currentInterval>8){
-        attack.currentInterval = attack.currentInterval -8
-      }
-      $("#"+i).text("-"+attack.name + " damage: "+attack.damage +", next beat: "+attack.currentInterval)
-    }
-    }
+  }
+  // i=0
+  // i=1
+  // move(moveSet[i])
+  //
+  // i=2
+  // move(moveSet[i])
 
 
-  // if(beat == attack.currentInterval){
-  //   $("#"+beat).text(attack.name) //adds attack name in list
-  //   console.log(attack.name + " " + beat)
-  //   attack.currentInterval = attack.currentInterval + attack.startInterval
-  //   if(attack.currentInterval>8){
-  //     attack.currentInterval = attack.currentInterval -8
-  //   }
-  //   console.log(attack.name+ " is now "+ attack.currentInterval)
-  // }
+
 
 }
-moveSet= [thunderMag,fireMag,iceMag]
-// function moveSet(){
-//   move(thunderMag)
-//   move(fireMag)
-//   move(iceMag)
-// }
-
-
-// function fireBall(beat){
-//   if(beat==2){
-//     console.log("fireball " + beat)
-//   }
-// }
-//
-// interval = 5
-//
-// function thunder(beat){
-//
-//   function check(){
-//
-//     if(beat==interval){
-//       console.log("thunder " + beat)
-//
-//       interval= interval+5
-//       if(interval>8){
-//          interval= interval - 8
-//       }
-//       console.log("new interval "+interval)
-//     }
-//
-//   }
-//   check()
-// }
-
-
 
 $("document").ready(
   function(){
     measureClockSystem()
     console.log(beat)
-    move(moveSet[0])
+
+    $(".start").click(function(){ //turns start button into next button
+      loadedMoves()
+
+      $(".start").css("display","none")
+      $(".next").css("display","block")
+    })
+
   }
 
 )
