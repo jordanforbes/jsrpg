@@ -12,16 +12,18 @@ function measureClockSystem(){
     $("#"+beat).css("background-color","") //clears previous number
 
     if(beat==8){ //advances clock but makes sure clock doesn't go over 8
+
+      $(".tick").text("-") //clears measure
+
       beat=1
+      move(moveSet[0])
     }else{
       beat = beat+1
     }
 
     setClock(beat)
     console.log(beat)
-    move(thunderMag)
-    move(fireMag)
-    move(iceMag)
+
   })
 }
 
@@ -40,16 +42,35 @@ var fireMag = new attack("FireBall",3,3,3)
 
 function move(attack){ //use move
 
-  if(beat == attack.currentInterval){
-    console.log(attack.name + " " + beat)
+  for(i=1;i<=8;i++){
+    if(i == attack.currentInterval){
     attack.currentInterval = attack.currentInterval + attack.startInterval
+
     if(attack.currentInterval>8){
-      attack.currentInterval = attack.currentInterval -8
+        attack.currentInterval = attack.currentInterval -8
+      }
+      $("#"+i).text("-"+attack.name + " damage: "+attack.damage +", next beat: "+attack.currentInterval)
     }
-    console.log(attack.name+ " is now "+ attack.currentInterval)
-  }
+    }
+
+
+  // if(beat == attack.currentInterval){
+  //   $("#"+beat).text(attack.name) //adds attack name in list
+  //   console.log(attack.name + " " + beat)
+  //   attack.currentInterval = attack.currentInterval + attack.startInterval
+  //   if(attack.currentInterval>8){
+  //     attack.currentInterval = attack.currentInterval -8
+  //   }
+  //   console.log(attack.name+ " is now "+ attack.currentInterval)
+  // }
 
 }
+moveSet= [thunderMag,fireMag,iceMag]
+// function moveSet(){
+//   move(thunderMag)
+//   move(fireMag)
+//   move(iceMag)
+// }
 
 
 // function fireBall(beat){
@@ -84,7 +105,7 @@ $("document").ready(
   function(){
     measureClockSystem()
     console.log(beat)
-
+    move(moveSet[0])
   }
 
 )
