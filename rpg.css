@@ -1,3 +1,13 @@
 .next{
   display:none;
 }
+
+.attackname{
+  background-color:blue;
+  color:white;
+}
+
+#thunderid{
+  background-color:yellow;
+  color:black;
+}

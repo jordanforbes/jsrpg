@@ -21,17 +21,17 @@ moveSet=[
 
 function move(attack){ //use move
 
-  for(i=1;i<=8;i++){
-    if(i == attack.currentInterval){
-    attack.currentInterval = attack.currentInterval + attack.startInterval
+  for(i=1;i<=8;i++){//determines next beat
+    if(i == attack.currentInterval){ //does the attack's current interval match the beat
+      attack.currentInterval += attack.startInterval //if yes then move the interval up
 
-    if(attack.currentInterval>8){
-        attack.currentInterval = attack.currentInterval -8
+      if(attack.currentInterval>8){//makes sure next beat is within 8
+        attack.currentInterval -=8
       }
-      $("#"+i).text("-"+attack.name + " damage: "+attack.damage +", next beat: "+attack.currentInterval)
+    $("#"+i).append("<span class='attackname'>"+attack.name + "</span> damage: "+attack.damage +", next beat: "+attack.currentInterval+"/ ")
+    console.log("move "+i+" "+ attack.damage+" dam")
     }
-    }
-
+  }
 }
 
 //clock setup
@@ -58,7 +58,6 @@ function measureClockSystem(){
     }
 
     setClock(beat)
-    console.log(beat)
 
   })
 }
@@ -70,22 +69,12 @@ function loadedMoves(){
     move(moveSet[j])
 
   }
-  // i=0
-  // i=1
-  // move(moveSet[i])
-  //
-  // i=2
-  // move(moveSet[i])
-
-
-
 
 }
 
 $("document").ready(
   function(){
     measureClockSystem()
-    console.log(beat)
 
     $(".start").click(function(){ //turns start button into next button
       loadedMoves()
