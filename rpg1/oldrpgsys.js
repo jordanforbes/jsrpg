@@ -28,6 +28,7 @@ function move(attack){ //use move
       if(attack.currentInterval>8){//makes sure next beat is within 8
         attack.currentInterval -=8
       }
+
     $("#"+i).append("<span class='attackname'>"+attack.name + "</span> damage: "+attack.damage +", next beat: "+attack.currentInterval+"/ ")
     console.log("move "+i+" "+ attack.damage+" dam")
     }
@@ -72,6 +73,7 @@ function loadedMoves(){
 
 }
 
+//game loop
 $("document").ready(
   function(){
     measureClockSystem()
@@ -86,3 +88,8 @@ $("document").ready(
   }
 
 )
+
+//todo
+
+//swap this "append" system for one that involves pushing the attacks to arrays for each turn. at which point move priority can be determined
+//make it so that you can decide which move to use instead of just automatically using all of the moves as frequently as possible.
