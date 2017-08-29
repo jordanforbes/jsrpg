@@ -1,6 +1,51 @@
 .playerbox{
-  border:1px dashed black;
+  position:relative;
+  float:left;
+  display:block;
+  border:1px dashed red;
 }
 .enemybox{
-  border:1px dashed red;
+  position:relative;
+  display:block;
+  float:left;
+  padding:1px;
+  border:1px dashed black;
+  /*height:80px;*/
+  /*width:150px;*/
+  /*height:100%;*/
+  /*width:100%;*/
+}
+.cantattack{
+  color:red
+}
+
+.enemystats .stat{
+  border:1px dashed black;
+}
+
+.playerstats .stat{
+  border:1px solid red;
+}
+.stat{
+  position:relative;
+  display:block;
+  float:left;
+  margin:10px;
+  padding:2px;
+}
+.hplabel{
+  display:block;
+  background-color:yellow;
+}
+.atklabel{
+  display:block;
+  background-color:yellow;
+}
+.statuslabel{
+  background-color:yellow;
+}
+
+.atkbutton{
+  display:block;
+  float:left;
 }

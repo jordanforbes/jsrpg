@@ -6,35 +6,80 @@
   <script src="rpg.js"></script>
 </head>
 <body>
-  <div class="enemybox">
-    Enemy
-    <div class="enemystats">
-      hp
-      <div class="enemyhp">
-      </div>
-
-      atk
-      <div class="enemyatk">
-      </div>
-
-    </div>
+  <div class="turnbox">
+    Current Turn:<span class="currentturn"></span>
   </div>
+
   <div class="playerbox">
     Player
     <div class="playerstats">
-      hp
-      <div class="playerhp">
+
+      <div class="stat hpbox">
+        <div class="hplabel">
+          hp
+        </div>
+
+        <div class="playerhp">
+        </div>
       </div>
 
-      atk
-      <div class="playeratk">
+      <div class="stat atkbox">
+        <div class="atklabel">
+          atk
+        </div>
+        <div class="playeratk">
+        </div>
+      </div>
+
+      <div class="stat statusbox">
+        <div class="statuslabel">
+          status
+        </div>
+        <div class="playerstatus">
+        </div>
       </div>
 
     </div>
-    <button class="attack">Attack</button>
+      <button class="atkbutton attack">Attack</button>
+      <div class="atkbutton cantattack">Can't Attack</div>
+
+    <button class="atkbutton reset">Reset</button>
   </div>
+
+
+  <div class="enemybox">
+    Enemy
+    <div class="enemystats">
+
+      <div class="stat hpbox">
+        <div class=" hplabel">
+          hp
+        </div>
+        <div class=" enemyhp">
+        </div>
+      </div>
+
+      <div class="stat atkbox">
+        <div class=" atklabel">
+          atk
+        </div>
+        <div class=" enemyatk">
+        </div>
+      </div>
+
+      <div class="stat statusbox">
+        <div class=" statuslabel"?>
+          status
+        </div>
+        <div class=" enemystatus">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <div class="log">
-    
+
   </div>
 
 
