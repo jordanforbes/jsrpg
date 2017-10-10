@@ -1,7 +1,7 @@
 function char(side,hp,atk,status,alive){
   this.side;
   this.hp=hp;
-  this.atk=atk;
+  this.atk=atk; //need to split this into multiple attacks. 
   this.status=status;
   this.alive=alive;
 }
@@ -20,8 +20,15 @@ function charSetUp(){
 function turnCheck(turn){
 
       if(turn == 0){
-        $(".playerbox").css("border","3px solid red")
-        $(".playerbox").css("background-color","#E6B0AA")
+        //marks if full health
+        if(player.hp ==10){
+          $(".playerbox").css("border","3px solid green")
+            $(".playerbox").css("background-color","yellow")
+        }else{
+          $(".playerbox").css("border","3px solid red")
+          $(".playerbox").css("background-color","#E6B0AA")
+
+        }
         $(".enemybox").css("border","3px dashed gray")
         $(".enemybox").css("background-color","white")
 
@@ -49,9 +56,9 @@ function turnSwitch(x){
 //battle
 
 //playerattacks
-function attack(){
+function attack(attack){
 
-      enemy.hp -=player.atk
+      enemy.hp -=attack
 
       if(enemy.hp>0 && player.status =="alive"){
         $(".log").append("<p>player attacks for "+player.atk+" damage!</p>")
@@ -142,7 +149,7 @@ $('document').ready(
 
     //attack button
     $(".attack").click(function(){
-      attack()
+      attack(player.atk)
       if(enemy.status =="alive"){
         timeVar=
           setInterval(enemyAttack,1000)
